@@ -1,2 +1,22 @@
 import express from "express";
 import cors from "cors";
+import userCreateRouter from "./routes/userCreateRouter.js";
+import config from "./utils/config.js";
+import mongoose from "mongoose";
+
+async function connectToDB(url) {
+  try {
+    await mongoose.connect(url);
+    console.log("Connected to DB");
+  } catch (err) {
+    console.log(err);
+  }
+}
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static("dist"));
+connectToDB(config.DB);
+app.use("/api/createuser", userCreateRouter);
+export default app;
