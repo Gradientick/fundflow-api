@@ -18,5 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("dist"));
 connectToDB(config.DB);
+
+// Endpoints
 app.use("/api/createuser", userCreateRouter);
 export default app;
