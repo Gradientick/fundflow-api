@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import userCreateRouter from "./routes/userCreateRouter.js";
+import loginRouter from "./routes/loginRouter.js";
 import config from "./utils/config.js";
 import mongoose from "mongoose";
 
@@ -21,4 +22,6 @@ connectToDB(config.DB);
 
 // Endpoints
 app.use("/api/createuser", userCreateRouter);
+app.use("/api/login", loginRouter);
+app.use("api/transactions", transactionsRouter);
 export default app;
